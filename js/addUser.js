@@ -40,6 +40,15 @@ const handleRegistration = (e) => {
       })
     : "";
 
+  const invalidAge = age < 0;
+  const invalidAgeError = invalidAge
+    ? Swal.fire({
+        icon: "warning",
+        title: "La edad no puede ser negativa",
+        footer: '<a href="./newUser.html">Intente nuevamente</a>',
+      })
+    : "";
+
   const passwordsMatch = password === password2;
   const passwordMatchError = passwordsMatch
     ? ""
@@ -48,8 +57,8 @@ const handleRegistration = (e) => {
         title: "Las contraseñas no coinciden",
         footer: '<a href="./newUser.html">Intente nuevamente</a>',
       });
-  if (userError || emptyFieldsError || passwordMatchError) {
-    userError || emptyFieldsError || passwordMatchError;
+  
+  if (userError || emptyFieldsError || invalidAgeError || passwordMatchError) {
     return;
   }
 
